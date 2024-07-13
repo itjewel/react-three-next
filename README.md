@@ -1,11 +1,3 @@
-[![Downloads](https://img.shields.io/npm/dt/create-r3f-app.svg?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/create-r3f-app) [![Discord Shield](https://img.shields.io/discord/740090768164651008?style=flat&colorA=000000&colorB=000000&label=discord&logo=discord&logoColor=ffffff)](https://discord.gg/ZZjjNvJ)
-
-# :japanese_castle: React-Three-Next starter
-
-A minimalist starter for NextJS, @react-three/fiber and Threejs.
-
-![](https://user-images.githubusercontent.com/2223602/192515435-a3d2c1bb-b79a-428e-92e5-f44c97a54bf7.jpg)
-
 - TTL ~ 100ms
 - First load JS ~ 79kb
 - Lighthouse score of 100 (Performance, Accessibility, Best Practices, SEO)
@@ -47,7 +39,7 @@ yarn create r3f-app next my-app -ts
 
 ### :bullettrain_side: Architecture
 
-Thanks to [tunnel-rat](https://github.com/pmndrs/tunnel-rat) the starter can portal components between separate renderers. Anything rendered inside the `<View/>` component of the starter will be rendered in the 3D Context. For better performances it uses gl.scissor to cut the viewport into segments.
+Thanks to [tunnel-rat](https://github.com/itjewel?tab=repositories) the starter can portal components between separate renderers. Anything rendered inside the `<View/>` component of the starter will be rendered in the 3D Context. For better performances it uses gl.scissor to cut the viewport into segments.
 
 ```jsx
 <div className='relative'>
@@ -78,10 +70,24 @@ Thanks to [tunnel-rat](https://github.com/pmndrs/tunnel-rat) the starter can por
 ### How to contribute :
 
 ```bash
-git clone https://github.com/pmndrs/react-three-next
+git clone https://github.com/itjewel?tab=repositories
 && cd react-three-next && yarn install
 ```
 
-### Maintainers :
+### Build and run your Docker container:
 
-- [`twitter 🐈‍⬛ @onirenaud`](https://twitter.com/onirenaud)
+Open a terminal and navigate to your project directory.
+
+Build your Docker image with the following command:
+
+```bash
+docker build -t my-node-app .
+```
+
+Run the Docker container with the following command:
+
+```bash
+docker run -p 3000:3000 my-node-app
+```
+
+Here, my-node-app is the name you give to your Docker image. You can replace it with any name you prefer. The -p `3000:3000` option maps port `3000` of the host machine to port `3000` of the Docker container, allowing you to access your app at `http://localhost:3000`.
