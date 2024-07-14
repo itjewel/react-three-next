@@ -1,9 +1,8 @@
 'use client'
-
-import { useGLTF } from '@react-three/drei'
+import { useGLTF, useTexture } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState,useEffect} from 'react'
 import { Line, useCursor, MeshDistortMaterial } from '@react-three/drei'
 import { useRouter } from 'next/navigation'
 
@@ -61,8 +60,39 @@ export function Duck(props) {
 
   return <primitive object={scene} {...props} />
 }
-export function Dog(props) {
-  const { scene } = useGLTF('/dog.glb')
 
-  return <primitive object={scene} {...props} />
+export function Dog(props){
+ const {scene} = useGLTF('/dog.glb');
+ const texture = useTexture("https://media.licdn.com/dms/image/C5103AQFuMdCSCvTfZg/profile-displayphoto-shrink_200_200/0/1517456109776?e=2147483647&v=beta&t=XFaothjRYmekhP9TxvuxH3cPrTHAup70xt9Ip2GCHlI");
+ const groupGl = useRef();
+ useEffect(()=>{
+  if(groupGl.current){
+    scene.traverse((child)=>{
+      if(child.isMesh){
+        child.material.map = texture;
+        child.material.meedUpdate = true;
+      }
+    });
+    groupGl.current.add(scene);
+  }
+  // groupGl.current.add(scene)
+ },[scene,texture]);
+ 
+ return <group ref={groupGl} {...props}/>
+
 }
+
+// export function Dog(props) {
+//  const {scene} = useGLTF('/dog.glb');
+//  const groupGl = useRef();
+//  useEffect(()=>{
+//   group.current.add(scene)
+//  },[scene]);
+//  return <group ref={groupGl} {...props}/>
+  
+// }
+// export function Dog(props) {
+//   // console.log(props,'jewel')
+//   const { scene } = useGLTF('/dog.glb')
+//   return <primitive object={scene} {...props} />
+// }
